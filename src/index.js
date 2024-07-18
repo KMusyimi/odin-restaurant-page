@@ -5,7 +5,7 @@ const navBtn = document.querySelectorAll(".header .nav ul li > button");
 // TODO: aad and animation class to handle all my animations
 document.addEventListener("DOMContentLoaded", function ()
 {
-    // const homepage = new HomePage();
+    const homepage = new HomePage();
     const reservation = new Reservations();
     const content = document.querySelector("#content");
     const headerSect = document.querySelector(".header_sect");
@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function ()
 
     const navBtnEvt = (evt =>
     {
+        const contentSect = content.lastElementChild;
+        contentSect.removeChild(contentSect.children[1]);
         navBtn.forEach(btn =>
         {
             if (btn.classList.contains("active"))
@@ -24,8 +26,6 @@ document.addEventListener("DOMContentLoaded", function ()
         const newTabId = evt.target.id;
         if (newTabId === "home")
         {
-            const contentSect = content.lastElementChild;
-            contentSect.removeChild(contentSect.children[1]);
             homepage.createMainSection(headerSect);
             homepage.animateMainSection();
         } else if (newTabId === "reservation"){

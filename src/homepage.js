@@ -72,16 +72,16 @@ export class HomePage
     constructor()
     {
         this.initialize();
-
+        
     }
     initialize()
     {
         const container = document.querySelector(".container");
-
+        
         const content = document.createElement("main");
         const img_wrapper = document.createElement("figure");
         const restaurantImg = document.createElement("img");
-
+        
 
         content.setAttribute("id", "content");
 
@@ -144,7 +144,6 @@ export class HomePage
         const div = document.createElement("div");
 
         main_sect.className = "main_sect";
-        main_sect.id = "hidden";
         menuTxt.innerText = "our menu";
 
         lightTxt.className = "light-txt";

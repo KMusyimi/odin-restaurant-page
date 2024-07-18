@@ -54,10 +54,10 @@ export class Reservations
         const formH1 = document.createElement("h1");
         const lightTxt = document.createElement("p");
         const inputContainer = document.createElement("div");
-        const name = document.createElement('label');
-        const person = document.createElement('label');
-        const reserve_date = document.createElement('label');
-        const reserve_time = document.createElement('label');
+        const submitBtn = document.createElement("button");
+
+        submitBtn.type = "submit";
+        submitBtn.innerText = "book a table";
 
         inputContainer.className = "input_container";
         reservationForm.className = "reserve_form";
@@ -80,6 +80,7 @@ export class Reservations
             label.htmlFor = formData[i].for;
             input.id = formData[i].for;
             input.placeholder = formData[i].placeholder;
+            input.type = formData[i].inputType;
             if (i >= 1)
             {
                 const wrapper = document.createElement("div");
@@ -102,6 +103,7 @@ export class Reservations
                 wrapper.appendChild(border);
                 wrapper.appendChild(btn);
                 inputWrapper.appendChild(wrapper);
+                btn.addEventListener("click", this.dropdownBtnEvt);
 
             } else
             {
@@ -116,6 +118,28 @@ export class Reservations
         header.appendChild(lightTxt);
         reservationForm.appendChild(header);
         reservationForm.appendChild(inputContainer);
+        reservationForm.insertAdjacentElement("beforeend", submitBtn);
         headerSection.insertAdjacentElement("afterend", reservationForm);
+    }
+    dropdownBtnEvt()
+    {
+        const wrapper = this.parentElement.parentElement;
+        const dropdownIcon = this.firstElementChild;
+        const wrapperInputField = wrapper.lastElementChild;
+
+        wrapper.classList.toggle("expanded");
+        wrapper.addEventListener("transitionrun", () =>
+        {
+            console.log('animationend :>> ');
+            if (dropdownIcon.classList.contains("rotated"))
+            {
+                dropdownIcon.classList.remove("rotated");
+            } else
+            {
+                dropdownIcon.classList.add("rotated");
+            }
+        }, { once: true });
+        wrapperInputField.classList.toggle("visible");
+
     }
 }

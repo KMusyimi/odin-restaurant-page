@@ -510,7 +510,6 @@ img {
 .reserve_form input {
   font-family: 'Nunito', sans-serif;
 
-  font-weight: 500;
   border: transparent;
   font-size: 1rem;
 
@@ -522,9 +521,12 @@ img {
 .reserve_form input,
 .reserve_form input::placeholder {
   color: var(--grey);
+  text-transform: capitalize;
+  font-weight: 600;
 }
 
 .reserve_form label {
+  font-weight: 500;
   display: block;
   width: fit-content;
   text-wrap: nowrap;
@@ -539,6 +541,10 @@ img {
   padding: 0.45em 0.85em;
   margin-left: 0.85em;
   width: 100%;
+}
+
+.reserve_form input[type="date"] {
+  text-transform: uppercase;
 }
 
 .reserve_form header h1 {
@@ -647,7 +653,7 @@ img {
 .reserve_form .divide::before {
   content: '';
   display: inline-block;
-  background-image: url(assets/images/avatar.png);
+  background-image: var(--ic);
   background-size: contain;
   width: 24px;
   height: 24px;
@@ -656,6 +662,23 @@ img {
 
 .reserve_form .divide {
   border-right: 1.5px solid var(--grey);
+}
+
+.reserve_form .input_wrapper:nth-of-type(1) .divide {
+  --ic: url(assets/icons/avatar.png);
+
+}
+
+.reserve_form .input_wrapper:nth-of-type(2) .divide {
+  --ic: url(assets/icons/group.png);
+}
+
+.reserve_form .input_wrapper:nth-of-type(3) .divide {
+  --ic: url(assets/icons/calendar.png);
+}
+
+.reserve_form .input_wrapper:nth-of-type(4) .divide {
+  --ic: url(assets/icons/clock.png);
 }
 
 .fade-out {

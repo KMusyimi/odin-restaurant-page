@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brew Bistro</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="icon" href="/src/assets/icons/restaurant.svg" type="image/svg">
+
+</head>
+
+<body>
+    <div class="container">
+
+        <header class="header">
+            <div class="logo">
+                <h1><span class="first_char">b</span><span>rew</span> <span>istro</span></h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><button id="home" class="active" type="button">
+                            <svg fill="none" viewBox="0 0 24 24">
+                                <path
+                                    d="M20 19V10.5C20 10.1852 19.8518 9.88885 19.6 9.7L12.6 4.45C12.2444 4.18333 11.7556 4.18333 11.4 4.45L4.4 9.7C4.14819 9.88885 4 10.1852 4 10.5V19C4 19.5523 4.44772 20 5 20H19C19.5523 20 20 19.5523 20 19Z"
+                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" />
+                            </svg> Home</button>
+                    </li>
+                    <li><button id="reservation" type="button">
+                            <svg viewBox="0 0 512 512">
+                                <path
+                                    d="M306.9,122.6c0.1-1.4,0.4-2.8,0.4-4.2c0-24.5-19.9-44.4-44.4-44.4s-44.4,19.9-44.4,44.4   c0,1.5,0.3,2.8,0.4,4.2H306.9z"
+                                    fill="currentColor" />
+                                <path
+                                    d="M457.6-0.8h-64.9c-7.9,0-15.1,4.7-18.3,12L320.1,136H52.4c-16,0-24,19.3-12.7,30.7l170.9,170.9v144.2h-68.8   c-8.5,0-15.5,7-15.5,15.5c0,8.5,7,15.5,15.5,15.5h168c8.5,0,15.5-7,15.5-15.5c0-8.5-7-15.5-15.5-15.5h-68.8V337.5L412,166.6   c11.3-11.3,3.3-30.7-12.7-30.7h-35.7l42.2-96.8h51.8c11,0,20-8.9,20-20C477.6,8.2,468.7-0.8,457.6-0.8z"
+                                    fill="currentColor" />
+                            </svg> Reservations</button>
+                    </li>
+                    <li><button id="about" type="button">
+                            <svg viewBox="0 0 32 32" fill="currentColor">
+                                <path class="cls-1"
+                                    d="M16,31A15,15,0,1,1,31,16,15,15,0,0,1,16,31ZM16,3A13,13,0,1,0,29,16,13,13,0,0,0,16,3Z" />
+                                <rect class="cls-1" height="9" width="2" x="15" y="14" />
+                                <path class="cls-1" d="M16,12a2,2,0,1,1,2-2A2,2,0,0,1,16,12Zm0-2Z" />
+
+                            </svg> About Us </button></li>
+                    <li><button id="order_now" type="button">
+                            <svg viewBox="0 0 32 32" fill="currentColor">
+                                <path
+                                    d="M10,20a1,1,0,0,1-1-.8L6.66,7.41A3,3,0,0,0,3.72,5H2A1,1,0,0,1,2,3H3.72a5,5,0,0,1,4.9,4L11,18.8A1,1,0,0,1,10.2,20Z" />
+                                <path
+                                    d="M11,27H9.14a4.14,4.14,0,0,1-.38-8.26l18.41-1.67L28.78,9H8A1,1,0,0,1,8,7H30a1,1,0,0,1,.77.37A1,1,0,0,1,31,8.2l-2,10a1,1,0,0,1-.89.8L8.94,20.74A2.13,2.13,0,0,0,9.14,25H11a1,1,0,0,1,0,2Z" />
+                                <path d="M26,30a4,4,0,1,1,4-4A4,4,0,0,1,26,30Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,26,24Z" />
+                                <path d="M14,30a4,4,0,1,1,4-4A4,4,0,0,1,14,30Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,14,24Z" />
+                                <path d="M23,27H17a1,1,0,0,1,0-2h6a1,1,0,0,1,0,2Z" />
+                            </svg>Order Now </button></li>
+                    <li><button id="contact" type="button">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <path
+                                    d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                            </svg>Contact Us</button>
+                    </li>
+                </ul>
+            </nav>
+            <footer><button type="button" class="btn">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" viewBox="0 0 24 24">
+                        <line x1="22" x2="11" y1="2" y2="13" />
+                        <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                    </svg>Feedback
+                </button></footer>
+        </header>
+        <div class="menu_wrapper">
+            <main id="content">
+                <figure class="img_wrapper"><img src="/src/assets/images/restaurant.jpg" alt="sample restaurant image">
+                </figure>
+                <div class="content_sect">
+                    <div class="header_sect">
+                        <span class="year">2000</span>
+                        <nav>
+                            <ul class="nav_items">
+                                <li><a href="#" class="inbox icon"><img src="/src/assets/icons/inbox.svg"
+                                            alt="inbox icon image"></a></li>
+                                <li><a href="#" class="profile icon"><img src="/src/assets/icons/profile.svg"
+                                            alt="profile icon image"></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <form action="#" class="reserve_form">
+                        <header>
+                            <h1>Make A Reservation</h1>
+                            <p class="light-txt">Kindly fill the form below to make a reservation.</p>
+                        </header>
+                        <div class="input_container">
+                            <div class="input_wrapper">
+                                <div class="divide"></div>
+                                <label for="fname">name</label>
+                                <input type="text" id="fname" name="fname">
+                            </div>
+                            <div class="input_wrapper input_wrapper--drop">
+                            
+                                <div class="wrapper">
+                                    <div class="divide"></div>
+                                    <label for="person">person</label>
+                                    <button type="button" class="btn btn-input"><img class="drop-ic" src="./assets/icons/drop_down.png" alt="dropdown">
+                                    </button>
+                                </div>
+                                <input type="number" id= "sample" name="sample" placeholder="01" min="1" max="50">
+                            </div>
+                            <div class="input_wrapper input_wrapper--drop">
+                            
+                                <div class="wrapper">
+                                    <div class="divide"></div>
+                                    <label for="person">person</label>
+                                    <button type="button" class="btn btn-input"><img class="drop-ic" src="./assets/icons/drop_down.png" alt="dropdown">
+                                    </button>
+                                </div>
+                                <input type="number" id= "sample" name="sample" placeholder="01" min="1" max="50">
+                            </div>
+                            <div class="input_wrapper input_wrapper--drop">
+                            
+                                <div class="wrapper">
+                                    <div class="divide"></div>
+                                    <label for="person">person</label>
+                                    <button type="button" class="btn btn-input"><img class="drop-ic" src="./assets/icons/drop_down.png" alt="dropdown">
+                                    </button>
+                                </div>
+                                <input type="number" id= "sample" name="sample" placeholder="01" min="1" max="50">
+                            </div>
+                            
+                            
+                        </div>
+                        <button type="button">Book a table</button>
+                    </form>
+                    <footer class="footer">
+                        <h1>Explore</h1>
+                        <nav>
+                            <ul class="nav_items">
+                                <li><a href="#" class="fb-ic icon"><img src="/src/assets/icons/facebook-icon.svg"
+                                            alt="facebook icon image"></a></li>
+                                <li><a href="#" class="x-ic icon"><img src="/src/assets/icons/x-icon.svg"
+                                            alt="x icon image"></a></li>
+                                <li><a href="#" class="insta-ic icon"><img src="/src/assets/icons/insta-icon.svg"
+                                            alt="instagram icon image"></a></li>
+                            </ul>
+                        </nav>
+                    </footer>
+                </div>
+            </main>
+        </div>
+
+    </div>
+    <script>
+        const wrapper = document.querySelector(".input_wrapper--drop");
+        const btns = document.querySelectorAll(".btn");
+        btns.forEach(btn =>
+        {
+            btn.addEventListener('click', () =>
+            {
+                const icon = document.querySelector(".btn-input > img");
+                const wrapper = btn.parentElement.parentElement;
+                const dropdownIcon = btn.firstElementChild;
+                const wrapperInputField = wrapper.lastElementChild;
+
+                wrapper.classList.toggle("expanded");
+
+                wrapper.addEventListener("transitionrun", () =>
+                {
+                    console.log('animationend :>> ');
+                    if (dropdownIcon.classList.contains("rotated"))
+                    {
+                        dropdownIcon.classList.remove("rotated");
+                    } else
+                    {
+                        dropdownIcon.classList.add("rotated");
+                    }
+                }, { once: true });
+                wrapperInputField.classList.toggle("visible");
+
+            })
+        })
+    </script>
+</body>
+
+</html>

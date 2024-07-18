@@ -1,10 +1,12 @@
 import { HomePage } from "./homepage";
+import { Reservations } from "./reservations";
 
 const navBtn = document.querySelectorAll(".header .nav ul li > button");
 // TODO: aad and animation class to handle all my animations
 document.addEventListener("DOMContentLoaded", function ()
 {
     // const homepage = new HomePage();
+    const reservation = new Reservations();
     const content = document.querySelector("#content");
     const headerSect = document.querySelector(".header_sect");
 
@@ -26,6 +28,8 @@ document.addEventListener("DOMContentLoaded", function ()
             contentSect.removeChild(contentSect.children[1]);
             homepage.createMainSection(headerSect);
             homepage.animateMainSection();
+        } else if (newTabId === "reservation"){
+            reservation.initialize();
         }
 
     });

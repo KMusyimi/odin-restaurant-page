@@ -97,7 +97,7 @@
                             <div class="input_wrapper">
                                 <div class="divide"></div>
                                 <label for="fname">name</label>
-                                <input type="text" id="fname" name="fname">
+                                <input type="text" id="fname" name="fname" placeholder="eg. John Doe">
                             </div>
                             <div class="input_wrapper input_wrapper--drop">
                             
@@ -114,7 +114,7 @@
                                 <div class="wrapper">
                                     <div class="divide"></div>
                                     <label for="person">person</label>
-                                    <button type="button" class="btn btn-input"><img class="drop-ic" src="./assets/icons/drop_down.png" alt="dropdown">
+                                    <button type="button" class="btn btn-input"><img class="drop-ic" src="./assets/icons/drop_down.png" alt="dropdown" required>
                                     </button>
                                 </div>
                                 <input type="number" id= "sample" name="sample" placeholder="01" min="1" max="50">
@@ -154,7 +154,7 @@
     </div>
     <script>
         const wrapper = document.querySelector(".input_wrapper--drop");
-        const btns = document.querySelectorAll(".btn");
+        const btns = document.querySelectorAll(".btn-input");
         btns.forEach(btn =>
         {
             btn.addEventListener('click', () =>

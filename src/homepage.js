@@ -32,36 +32,32 @@ const navItemsData = [
         "alt": "instagram icon image"
     }
 ];
+const arrowSvg = `
+        <svg fill="currentColor" viewBox="0 0 32 32">
+            <path
+            d="M22,9a1,1,0,0,0,0,1.42l4.6,4.6H3.06a1,1,0,1,0,0,2H26.58L22,21.59A1,1,0,0,0,22,23a1,1,0,0,0,1.41,0l6.36-6.36a.88.88,0,0,0,0-1.27L23.42,9A1,1,0,0,0,22,9Z" />
+        </svg>`;
 
 const menuCardData = [
     {
         "type": "drinks",
         "img": "./assets/images/drinks.jpg",
-        "alt": "sample drinks image",
-        "arrowSvg": `<svg fill="currentColor" id="drinks_ar" viewBox="0 0 32 32">
-            <path
-            d="M22,9a1,1,0,0,0,0,1.42l4.6,4.6H3.06a1,1,0,1,0,0,2H26.58L22,21.59A1,1,0,0,0,22,23a1,1,0,0,0,1.41,0l6.36-6.36a.88.88,0,0,0,0-1.27L23.42,9A1,1,0,0,0,22,9Z" />
-        </svg>`
-
+        "alt": "sample drinks image"
     },
     {
         "type": "food",
         "img": "./assets/images/food.jpg",
-        "alt": "sample food image",
-        "arrowSvg": `<svg fill="currentColor" id="food_ar" viewBox="0 0 32 32">
-            <path
-            d="M22,9a1,1,0,0,0,0,1.42l4.6,4.6H3.06a1,1,0,1,0,0,2H26.58L22,21.59A1,1,0,0,0,22,23a1,1,0,0,0,1.41,0l6.36-6.36a.88.88,0,0,0,0-1.27L23.42,9A1,1,0,0,0,22,9Z" />
-        </svg>`
+        "alt": "sample food image"
     }
 ];
 
 const objY = {
     x: 0,
-    y: 100
+    y: 10
 };
 
 const objX = {
-    x: 100,
+    x: 10,
     y: 0
 };
 
@@ -98,8 +94,8 @@ export class HomePage
         this.animateMainSection();
 
     }
-
-    createContentSection(parent)
+    
+    createContentSection(el)
     {
         const content_sect = document.createElement("div");
         const header_sect = document.createElement("div");
@@ -131,10 +127,10 @@ export class HomePage
 
         content_sect.appendChild(footer);
 
-        parent.insertAdjacentElement("beforeend", content_sect);
+        el.insertAdjacentElement("beforeend", content_sect);
     }
 
-    createMainSection(parent)
+    createMainSection(el)
     {
 
         const main_sect = document.createElement("main");
@@ -143,7 +139,8 @@ export class HomePage
         const divWrapper = document.createElement("div");
         const div = document.createElement("div");
 
-        main_sect.className = "main_sect";
+        main_sect.className = "main_sect visible";
+        main_sect.id = "home";
         menuTxt.innerText = "our menu";
 
         lightTxt.className = "light-txt";
@@ -155,7 +152,7 @@ export class HomePage
         main_sect.appendChild(divWrapper);
 
         this.createCard(main_sect);
-        parent.insertAdjacentElement("afterend", main_sect);
+        el.insertAdjacentElement("afterend", main_sect);
     }
 
     animateMainSection()
@@ -164,7 +161,7 @@ export class HomePage
         const firstChildNodes = mainSection.firstChild.childNodes;
         const lastChildNodes = mainSection.lastChild.childNodes;
 
-        let delay = 100;
+        let delay = 75;
 
         animateChildren(firstChildNodes[0].childNodes, objY);
         animateChildren(lastChildNodes, objX);
@@ -175,7 +172,7 @@ export class HomePage
             {
                 delay = delay + 125;
                 child.classList.add("fade-in");
-                child.style.transform = `translate3d(-${obj.x}px, -${obj.y}px, 0px) scale3d(1, 1, 1)`;
+                child.style.transform = `translate3d(-${obj.x}em, -${obj.y}em, 0em) scale3d(1, 1, 1)`;
                 child.style.animationDelay = `${delay}ms`;
 
                 child.addEventListener("animationend", () =>
@@ -184,24 +181,18 @@ export class HomePage
                     child.removeAttribute("style");
                 }, { once: true });
             });
-            delay = 100;
+            delay = 75;
         }
     }
 
-    displayMenuEvt(evt)
+    displayMenuEvt()
     {
         const cardWrapper = document.querySelector(".card_wrapper");
-        let btnId = evt.target.id;
-        if (btnId === "")
-        {
-            btnId = evt.target.parentElement.id;
-        }
-        btnId = btnId.split("_")[0];
         cardWrapper.classList.add("fade-out");
         cardWrapper.addEventListener("animationend", () =>
         {
             cardWrapper.parentElement.removeChild(cardWrapper);
-            const menuPage = new MenuPage(btnId);
+            const menuPage = new MenuPage(this.id);
             menuPage.initialize();
         });
     }
@@ -230,8 +221,8 @@ export class HomePage
 
             cardButton.innerText = "view menu";
 
-            cardButton.insertAdjacentHTML("beforeend", menuCardData[i].arrowSvg);
-            cardButton.addEventListener("click", this.displayMenuEvt.bind(this));
+            cardButton.insertAdjacentHTML("beforeend", arrowSvg);
+            cardButton.addEventListener("click", this.displayMenuEvt);
 
             cardHeader.appendChild(cardH1);
             cardFigure.appendChild(cardImg);
@@ -254,7 +245,6 @@ export class HomePage
 
         for (let i = 0; i < navItemsData.length; i++)
         {
-
             const el = navItemsData[i].parent;
             if (el == parent.className)
             {
@@ -274,6 +264,5 @@ export class HomePage
         nav.appendChild(navItems);
         parent.appendChild(nav);
     }
-
 }
 

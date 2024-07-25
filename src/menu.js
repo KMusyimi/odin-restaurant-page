@@ -107,7 +107,7 @@ export class MenuPage
             btn.type = "button";
             btn.innerHTML = obj.svg;
             navWrapper.appendChild(btn);
-            btn.addEventListener("click", this.navBtnEvt.bind(this));
+            btn.addEventListener("click", this.navBtnEvt);
         });
         el.insertAdjacentElement("beforeend", navWrapper);
 
@@ -127,7 +127,6 @@ export class MenuPage
             button.addEventListener("click", this.menuButtonEvt.bind(this));
             if (this.btnId === button.id)
             {
-
                 button.classList.add("active");
             }
         });
@@ -183,18 +182,11 @@ export class MenuPage
         this.populateMenu();
     }
 
-    navBtnEvt(evt)
+    navBtnEvt()
     {
         const menuItems = document.querySelector(".menu_items");
         const width = document.querySelector(".menu_card").offsetWidth;
-        let btnId = evt.target.id;
-
-        if (btnId === "")
-        {
-            btnId = evt.target.parentElement.id;
-        }
-
-        btnId = btnId.split("_")[0];
+        let btnId = this.id;
 
         if (btnId === "next")
         {
@@ -306,7 +298,6 @@ const menuCardElement = (parent, menu) =>
     const currency = document.createElement("span");
 
     menuCard.className = "menu_card";
-    // menuCard.style.transform = "translate3d(-30%, 0, 0) scale3d(0.5, 0.86, 1)";
     menuFigure.className = "menu_img";
     title.className = "title";
     description.className = "description";

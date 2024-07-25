@@ -1,50 +1,39 @@
 import moment from "moment";
 
-let date = new Date().toLocaleDateString();
-console.log('moment :>> ', moment().add(5, 'days').calendar());
-
 const formData = [
     {
         label: "name",
-        // for will be similar for name and id for input
-        for: "fullname",
-        inputType: "text",
-        placeholder: "eg. joe doe"
+        inputId: "fullname"
     },
     {
         label: "person",
-        // for will be similar for name and id for input
-        for: "persons",
-        inputType: "number",
-        placeholder: "01",
-        min: 1,
-        max: 50
+        inputId: "persons"
     },
     {
         label: "reserve date",
-        // for will be similar for name and id for input
-        for: "rsvdate",
-        inputType: "date",
-        placeholder: "2024-04-04",
-        min: moment().format('L'),
-        max: moment().add(5, 'days').format('L')
+        inputId: "rsvdate"
+     
     },
     {
         label: "reserve time",
-        // for will be similar for name and id for input
-        for: "rsvtime",
-        inputType: "time",
-        placeholder: "18:00",
-        min: moment().format('LT'),
-        max: "22:00"
+        inputId: "rsvtime"
     },
-]
+];
+
+const arrowSvg = `
+    <svg fill="currentColor" viewBox="0 0 32 32">
+        <path
+        d="M22,9a1,1,0,0,0,0,1.42l4.6,4.6H3.06a1,1,0,1,0,0,2H26.58L22,21.59A1,1,0,0,0,22,23a1,1,0,0,0,1.41,0l6.36-6.36a.88.88,0,0,0,0-1.27L23.42,9A1,1,0,0,0,22,9Z" />
+    </svg>`;
 
 export class Reservations
 {
     constructor()
     {
-
+        this.currentTime = moment().format("HH:mm");
+        this.startDate = moment().format('YYYY-MM-DD');
+        this.endDate = moment().add(5, 'days').format('YYYY-MM-DD');
+        this.initialize();
     }
     initialize()
     {
@@ -60,7 +49,8 @@ export class Reservations
         submitBtn.innerText = "book a table";
 
         inputContainer.className = "input_container";
-        reservationForm.className = "reserve_form";
+        reservationForm.className = "reserve_form hidden";
+        reservationForm.id = "reservation";
         lightTxt.className = "light_txt";
 
 
@@ -77,17 +67,16 @@ export class Reservations
             border.className = "divide";
 
             label.innerText = formData[i].label;
-            label.htmlFor = formData[i].for;
-            input.id = formData[i].for;
-            input.placeholder = formData[i].placeholder;
-            input.type = formData[i].inputType;
+            label.htmlFor = formData[i].inputId;
+            input.id = formData[i].inputId;
+            input.name =  formData[i].inputId;
+
+            this.setInputAttributes(input);
             if (i >= 1)
             {
                 const wrapper = document.createElement("div");
                 const btn = document.createElement("button");
                 const dropdownIcon = document.createElement("img");
-                input.min = formData[i].min;
-                input.max = formData[i].max;
 
 
                 inputWrapper.classList.add("input_wrapper--drop");
@@ -104,6 +93,7 @@ export class Reservations
                 wrapper.appendChild(btn);
                 inputWrapper.appendChild(wrapper);
                 btn.addEventListener("click", this.dropdownBtnEvt);
+                input.addEventListener("focus", this.inputFocusEvt);
 
             } else
             {
@@ -114,6 +104,9 @@ export class Reservations
             inputWrapper.appendChild(input);
             inputContainer.appendChild(inputWrapper);
         }
+
+        submitBtn.insertAdjacentHTML("beforeend", arrowSvg);
+        submitBtn.addEventListener("click", this.submitFormEvt);
         header.appendChild(formH1);
         header.appendChild(lightTxt);
         reservationForm.appendChild(header);
@@ -121,25 +114,81 @@ export class Reservations
         reservationForm.insertAdjacentElement("beforeend", submitBtn);
         headerSection.insertAdjacentElement("afterend", reservationForm);
     }
+
     dropdownBtnEvt()
     {
         const wrapper = this.parentElement.parentElement;
-        const dropdownIcon = this.firstElementChild;
-        const wrapperInputField = wrapper.lastElementChild;
-
-        wrapper.classList.toggle("expanded");
-        wrapper.addEventListener("transitionrun", () =>
-        {
-            console.log('animationend :>> ');
-            if (dropdownIcon.classList.contains("rotated"))
-            {
-                dropdownIcon.classList.remove("rotated");
-            } else
-            {
-                dropdownIcon.classList.add("rotated");
-            }
-        }, { once: true });
-        wrapperInputField.classList.toggle("visible");
+        expandInputWrapper(wrapper)
 
     }
-}
+    inputFocusEvt()
+    {
+        const wrapper = this.parentElement;
+        if (!wrapper.classList.contains("expanded"))
+        {
+            expandInputWrapper(wrapper);
+        }
+    }
+    setInputAttributes(el)
+    {
+        switch (el.id)
+        {
+            case "rsvdate":
+                el.type = "date";
+                el.min = this.startDate;
+                el.max = this.endDate;
+                el.value = this.startDate;
+                break;
+            case "rsvtime":
+                el.type = "time";
+                el.min = this.currentTime;
+                el.max = "22:00";
+                el.value = this.currentTime;
+                break;
+            case "fullname":
+                el.type = "text";
+                el.maxLength = 25;
+                el.placeholder = "eg. joe doe"
+                break;
+            case "persons":
+                el.type = "number";
+                el.min = 1;
+                el.max = 20;
+                el.value = 1;
+                break;
+        }
+    }
+    submitFormEvt(evt){
+        evt.preventDefault();
+        const fName = document.querySelector('#fullname');
+        const fullName = document.querySelector('#fullname').value;
+        const persons = document.querySelector('#persons').value;
+        const rsvtime = document.querySelector('#rsvtime').value;
+        const rsvdate = document.querySelector('#rsvdate').value;
+        if (fullName === ""){
+            fName.focus();
+            return;
+        }
+        console.log('object :>> ', object);
+        console.log('fullName :>> ', fullName, persons, rsvtime, rsvdate);
+    }
+    successMsg(){
+        let html = `
+            <h1>Thank You!</h1>
+            <p>
+            Thanks for making a reservation! We hope you have fun
+            using our platform. If you ever need support, please feel free
+            to email us at support@loremgaming.com.
+            </p>
+        `
+    }
+};
+
+const expandInputWrapper = ((el) =>
+{
+    const inputField = el.lastElementChild;
+    el.classList.toggle("expanded");
+    el.addEventListener("animationend", ()=>{
+        inputField.classList.toggle("visible");
+    });
+});
